@@ -1,79 +1,121 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📱 React Native Voice Navigator
 
-# Getting Started
+A React Native mobile app exploring core mobile development patterns — multi-level navigation, text-to-speech, audio playback, URL linking, and reusable component design. Built as a practical deep-dive into the React Native ecosystem.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+---
 
-## Step 1: Start the Metro Server
+## ✨ Features
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- 🔐 **Authentication Flow** — login screen with form validation and toast feedback
+- 🧭 **Multi-level Navigation** — Stack → Bottom Tabs → Drawer (all three navigation patterns in one app)
+- 🔊 **Text-to-Speech** — converts user input to spoken audio via `react-native-tts`
+- 🎵 **Audio Playback** — plays sound files using `react-native-sound`
+- 🌐 **URL Linking** — opens URLs in the device's default browser
+- ⚙️ **Background Tasks** — interval-based background execution demo
+- 🧩 **Reusable Components** — `CustomTextInput` and `CustomButton` component library
 
-To start Metro, run the following command from the _root_ of your React Native project:
+---
 
-```bash
-# using npm
-npm start
+## 🛠️ Tech Stack
 
-# OR using Yarn
-yarn start
+![React Native](https://img.shields.io/badge/React_Native_0.76-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
+| Library | Purpose |
+|---------|---------|
+| React Native 0.76.5 | Cross-platform mobile framework |
+| React Navigation | Stack, Bottom Tab, and Drawer navigators |
+| react-native-tts | Text-to-speech synthesis |
+| react-native-sound | Audio file playback |
+| react-native-reanimated | Gesture-driven animations |
+| react-native-fast-image | Optimized image loading |
+| react-native-toast-message | In-app toast notifications |
+| react-native-permissions | Device permission management |
+| react-native-vector-icons | MaterialIcons icon set |
+
+---
+
+## 🗂️ Navigation Architecture
+
+```
+StackNavigator
+├── HelloWorldScreen       ← entry/splash
+├── LoginScreen            ← auth (admin / admin)
+└── Main → DrawerNavigator
+              ├── Dashboard → BottomTabNavigator
+              │               ├── HomeScreen   (TTS + audio + background task)
+              │               └── WebScreen    (URL opener)
+              └── Logout   ← navigates back to HelloWorld
 ```
 
-## Step 2: Start your Application
+---
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## 📁 Project Structure
 
-### For Android
+```
+React-Native-Voice-Navigator/
+├── src/
+│   ├── screens/
+│   │   ├── HelloWorldScreen.jsx   # Splash / entry screen
+│   │   ├── LoginScreen.jsx        # Login with validation & toast
+│   │   ├── HomeScreen.jsx         # TTS, audio, image background task
+│   │   └── WebScreen.jsx          # URL input & deep linking
+│   ├── navigation/
+│   │   ├── StackNavigator.jsx     # Root stack
+│   │   └── BottomTabNav.jsx       # Tabs + Drawer combined
+│   ├── components/
+│   │   ├── CustomTextInput.jsx    # Reusable input field
+│   │   └── CustomButton.jsx       # Reusable button
+│   └── assets/
+│       ├── images/                # App images
+│       └── sounds/                # Audio files
+├── App.jsx
+└── package.json
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- React Native CLI
+- Android Studio (Android) or Xcode (iOS)
+
+### Installation
 
 ```bash
-# using npm
+# Clone the repository
+git clone https://github.com/mbilalhussain15/React-Native-Voice-Navigator.git
+cd React-Native-Voice-Navigator
+
+# Install dependencies
+npm install
+
+# iOS only — install CocoaPods
+cd ios && pod install && cd ..
+```
+
+### Run the App
+
+```bash
+# Android
 npm run android
 
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
+# iOS
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### Login Credentials
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+```
+Username: admin
+Password: admin
+```
 
-## Step 3: Modifying your App
+---
 
-Now that you have successfully run the app, let's modify it.
+## 📄 License
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+MIT © [Bilal Hussain](https://github.com/mbilalhussain15)
